@@ -1,8 +1,51 @@
-<p class="text-center text-muted">© Copyright 2020 The Awesome People</p>
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/2.3.8/js/dataTables.bootstrap5.js"></script>
+
+<footer>
+  <p class="text-center text-muted">© Copyright 2020 The Awesome People</p>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.8/js/dataTables.bootstrap5.js"></script>
+
 <script>
-new DataTable('#tabla');
+document.addEventListener('DOMContentLoaded', function () {
+  new DataTable('#tabla', {
+  language: {
+    url: "https://cdn.datatables.net/plug-ins/2.3.8/i18n/es-ES.json"
+  }
+
+});
+});
+
+
+
+function eliminarcliente(id) { fetch(`/api/cli/clientes/${id}`, {
+    method: "DELETE"
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.mensaje);
+    location.reload();
+  });
+}
+function eliminarproducto(id) { fetch(`/api/pro/productos/${id}`, {
+    method: "DELETE"
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.mensaje);
+    location.reload();
+  });
+}
+function eliminarservicio(id) { fetch(`/api/ser/servicios/${id}`, {
+    method: "DELETE"
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.mensaje);
+    location.reload();
+  });
+}
 </script>

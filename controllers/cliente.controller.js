@@ -41,7 +41,7 @@ exports.home = async(req,res)=>{
 exports.formulario = (req, res) => {
   const tipo = req.params.tipo;
 
-  console.log("TIPO RECIBIDO:", tipo); // 🔥 debug
+  console.log("TIPO RECIBIDO:", tipo); 
 
   let config = {
     titulo: "Formulario"
