@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.titulo %></title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.bootstrap5.css">
+</head>
+
+<body>
+
+  <%- include('../partials/header'); %>
+
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 500px;">
+
+      <h3 class="text-center mb-4"><%= config.titulo %></h3>
+
+      <% if (tipo === "cliente") { %>
+        <form action="/clientes" method="POST">
+      <% } %>
+
+      <% if (tipo === "producto") { %>
+        <form action="/productos" method="POST">
+      <% } %>
+
+      <% if (tipo === "servicio") { %>
+        <form action="/servicios" method="POST">
+      <% } %>
+
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="nombre" required>
+        </div>
+
+        <% if (tipo === "cliente") { %>
+          <div class="mb-3">
+            <label class="form-label">Teléfono</label>
+            <input type="text" class="form-control" name="telefono">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email">
+          </div>
+        <% } %>
+
+        <% if (tipo === "producto") { %>
+          <div class="mb-3">
+            <label class="form-label">Precio</label>
+            <input type="number" step="0.01" class="form-control" name="precio">
+          </div>
+        <% } %>
+
+        <% if (tipo === "servicio") { %>
+          <div class="mb-3">
+            <label class="form-label">Precio</label>
+            <input type="number" step="0.01" class="form-control" name="precio">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Duración</label>
+            <input type="text" class="form-control" name="duracion">
+          </div>
+        <% } %>
+
+        <button type="submit" class="btn btn-primary w-100">
+          Guardar
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <%- include('../partials/footer'); %>
+
+</body>
+</html>

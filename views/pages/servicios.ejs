@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div>
+            <h1>servicios</h1>
+ <table id="tabla" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Duración Minutos</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% servicios.forEach(function(servicio) { %>
+            <tr>
+                <td><%= servicio.nombre %></td>
+                <td><%= servicio.precio %></td>
+                <td><%= servicio.duracionMinutos %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>
