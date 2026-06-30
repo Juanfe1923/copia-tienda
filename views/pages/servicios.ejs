@@ -211,36 +211,32 @@ async function guardarServicio() {
 
     const id = document.getElementById("idModal").value;
 
-    const nombre = document.getElementById("nombreModal").value;
-    const precio = document.getElementById("precioModal").value;
-    const duracionMinutos = document.getElementById("duracionModal").value;
+    const nombre = document.getElementById("nombreModal").value.trim();
+    const precio = document.getElementById("precioModal").value.trim();
+    const duracionMinutos = document.getElementById("duracionModal").value.trim();
 
-    const respuesta = await fetch("/api/ser/servicios/" + id, {
+    if (nombre === "" || precio === "" || duracionMinutos === "") {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
 
-        method: "PUT",
-
+    const respuesta = await fetch('/api/ser/servicios/' + id, {
+        method: 'PUT',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         },
-
         body: JSON.stringify({
             nombre,
             precio,
             duracionMinutos
         })
-
     });
 
     if (respuesta.ok) {
-
         location.reload();
-
     } else {
-
         alert("Error al actualizar el servicio");
-
     }
-
 }
 
 function prepararEliminar(id, nombre, precio, duracion) {

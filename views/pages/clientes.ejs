@@ -75,7 +75,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="nombreModal">
+                            <input type="text" class="form-control" name="nombre" id="nombreModal" >
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Teléfono</label>
@@ -146,9 +146,14 @@ async function guardarCliente() {
 
     const emailOriginal = document.getElementById("emailOriginal").value;
 
-    const nombre = document.getElementById("nombreModal").value;
-    const telefono = document.getElementById("telModal").value;
-    const email = document.getElementById("emailModal").value;
+    const nombre = document.getElementById("nombreModal").value.trim();
+    const telefono = document.getElementById("telModal").value.trim();
+    const email = document.getElementById("emailModal").value.trim();
+
+    if (nombre === "" || telefono === "" || email === "") {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
 
     const respuesta = await fetch('/api/cli/clientes/' + emailOriginal, {
         method: 'PUT',
@@ -161,7 +166,7 @@ async function guardarCliente() {
             email
         })
     });
-console.log(respuesta);
+
     if (respuesta.ok) {
         location.reload();
     } else {
