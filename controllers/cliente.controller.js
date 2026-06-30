@@ -7,7 +7,7 @@ exports.consultar = async (req, res) => {
 };
 
 exports.obtenerPorId = async (req, res) => {
-  const data = await Cliente.findById(req.params.id);
+  const data = await Cliente.findOne({ email: req.params.email });
   res.json(data);
 };
 
@@ -21,12 +21,14 @@ exports.crear = async (req, res) => {
 };
 
 exports.actualizar = async (req, res) => {
-  const data = await Cliente.findByIdAndUpdate(
-    req.params.id,
+  const data = await Cliente.findOneAndUpdate(
+    { email: req.params.email },
     req.body,
     { new: true }
   );
-  res.json(data);
+
+  res.json(data)
+  await data.save();
 };
 
 exports.eliminar = async (req, res) => {

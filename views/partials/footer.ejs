@@ -19,17 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 });
 
-
-
-function eliminarcliente(id) { fetch(`/api/cli/clientes/${id}`, {
-    method: "DELETE"
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert(data.mensaje);
-    location.reload();
-  });
-}
 function eliminarproducto(id) { fetch(`/api/pro/productos/${id}`, {
     method: "DELETE"
   })
